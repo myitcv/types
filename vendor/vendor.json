@@ -1,0 +1,13 @@
+{
+	"comment": "",
+	"ignore": "",
+	"package": [
+		{
+			"checksumSHA1": "7YFZbL5K5IyGh45S4jC+vNUm0Jw=",
+			"path": "github.com/kisielk/gotool",
+			"revision": "0de1eaf82fa3f583ce21fde859f1e7e0c5e9b220",
+			"revisionTime": "2016-11-30T08:01:11Z"
+		}
+	],
+	"rootPath": "myitcv.io/types"
+}
