@@ -28,6 +28,7 @@ func (i *ignorePaths) String() string {
 	return fmt.Sprint(*i)
 }
 
+var fImm = flag.Bool("imm", false, "filter out _Imm_ types but use their position for the corresponding generated type")
 var fIgnorePaths ignorePaths
 
 func init() {
@@ -91,19 +92,21 @@ Parse:
 	var out []string
 
 	for k, v := range matches {
-		if strings.HasPrefix(k.name, ImmPrefix) {
-			continue
-		}
-
-		imm, ok := matches[match{
-			path: k.path,
-			name: ImmPrefix + k.name,
-		}]
-
 		pos := v
 
-		if ok {
-			pos = imm
+		if *fImm {
+			if strings.HasPrefix(k.name, ImmPrefix) {
+				continue
+			}
+
+			imm, ok := matches[match{
+				path: k.path,
+				name: ImmPrefix + k.name,
+			}]
+
+			if ok {
+				pos = imm
+			}
 		}
 
 		out = append(out, fmt.Sprintf("%v: ./%v.%v", pos, k.path, k.name))
